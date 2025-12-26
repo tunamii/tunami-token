@@ -1,16 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Copy, ExternalLink, Rocket, Shield, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { Testimonials } from "@/components/Testimonials";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
+  const [randomTuna, setRandomTuna] = useState("/images/tuna-1.png");
+  
   const contractAddress = ""; // User will add this
   const twitterLink = ""; // User will add this
   const tokenLink = ""; // User will add this
+
+  // Set random TUNA image on page load
+  useEffect(() => {
+    const tunaImages = [
+      "/images/tuna-1.png",
+      "/images/tuna-2.png",
+      "/images/tuna-3.png",
+      "/images/tuna-4.png",
+      "/images/tuna-5.png",
+      "/images/tuna-6.png",
+      "/images/tuna-7.png",
+      "/images/tuna-8.png",
+    ];
+    const randomIndex = Math.floor(Math.random() * tunaImages.length);
+    setRandomTuna(tunaImages[randomIndex]);
+  }, []);
 
   const copyToClipboard = () => {
     if (!contractAddress) {
@@ -112,12 +130,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mascot Image */}
+          {/* Mascot Image - Random TUNA */}
           <div className="relative h-64 md:h-96 lg:h-full flex items-center justify-center order-first lg:order-last">
             <img 
-              src="/images/mascot.png" 
+              src={randomTuna}
               alt="TUNAMI Mascot" 
-              className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,255,136,0.3)]"
+              className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,255,136,0.3)] animate-in fade-in duration-500"
             />
           </div>
         </div>
