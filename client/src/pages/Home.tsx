@@ -16,16 +16,7 @@ export default function Home() {
 
   // Set random TUNA image on page load
   useEffect(() => {
-    const tunaImages = [
-      "/images/tuna-1.png",
-      "/images/tuna-2.png",
-      "/images/tuna-3.png",
-      "/images/tuna-4.png",
-      "/images/tuna-5.png",
-      "/images/tuna-6.png",
-      "/images/tuna-7.png",
-      "/images/tuna-8.png",
-    ];
+    const tunaImages = Array.from({ length: 53 }, (_, i) => `/images/tuna-${i + 1}.png`);
     const randomIndex = Math.floor(Math.random() * tunaImages.length);
     setRandomTuna(tunaImages[randomIndex]);
   }, []);
@@ -55,7 +46,7 @@ export default function Home() {
           </div>
           <div className="hidden md:flex items-center gap-8 font-medium text-sm md:text-base">
             <a href="#about" className="hover:text-primary transition-colors">About</a>
-            <a href="#tokenomics" className="hover:text-primary transition-colors">Tokenomics</a>
+            
             <a href="#roadmap" className="hover:text-primary transition-colors">Roadmap</a>
             <a href="/generator" className="hover:text-primary transition-colors">Generator</a>
           </div>
@@ -172,38 +163,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tokenomics Section */}
-      <section id="tokenomics" className="relative py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 gradient-text">Tokenomics</h2>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-4 md:space-y-6">
-
-              <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
-                <p className="text-white/60 text-sm mb-2">Buy/Sell Tax</p>
-                <p className="text-2xl md:text-3xl font-bold text-primary font-mono">0%</p>
-              </div>
-
-            </div>
-
-            <div className="space-y-3 md:space-y-4">
-              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
-                <p className="text-primary font-bold">No Buy/Sell Tax 🍣</p>
-              </div>
-
-              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
-                <p className="text-primary font-bold">No Team Tokens 🤝</p>
-              </div>
-              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
-                <p className="text-primary font-bold">100% Community-Driven 🌍</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Roadmap Section */}
       <section id="roadmap" className="relative py-16 md:py-20 bg-black/40 border-t border-white/10">
