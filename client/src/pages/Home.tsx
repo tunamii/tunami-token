@@ -4,7 +4,7 @@ import { Copy, ExternalLink, Rocket, Shield, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
-import { Testimonials } from "@/components/Testimonials";
+
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
@@ -154,7 +154,7 @@ export default function Home() {
                   <Shield className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 font-display">100% Safe</h3>
-                <p className="text-white/80">Liquidity burned, mint authority revoked. Community-driven and fully transparent.</p>
+                <p className="text-white/80">Mint authority revoked. Community-driven and fully transparent.</p>
               </CardContent>
             </Card>
 
@@ -180,27 +180,19 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-4 md:space-y-6">
-              <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
-                <p className="text-white/60 text-sm mb-2">Total Supply</p>
-                <p className="text-2xl md:text-3xl font-bold text-primary font-mono">Coming Soon</p>
-              </div>
+
               <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
                 <p className="text-white/60 text-sm mb-2">Buy/Sell Tax</p>
                 <p className="text-2xl md:text-3xl font-bold text-primary font-mono">0%</p>
               </div>
-              <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
-                <p className="text-white/60 text-sm mb-2">LP Locked</p>
-                <p className="text-2xl md:text-3xl font-bold text-primary font-mono">✅ Yes</p>
-              </div>
+
             </div>
 
             <div className="space-y-3 md:space-y-4">
               <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
                 <p className="text-primary font-bold">No Buy/Sell Tax 🍣</p>
               </div>
-              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
-                <p className="text-primary font-bold">LP Locked 🔥</p>
-              </div>
+
               <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
                 <p className="text-primary font-bold">No Team Tokens 🤝</p>
               </div>
@@ -308,8 +300,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <Testimonials />
+
 
       {/* Footer */}
       <footer className="border-t border-white/10 bg-black/60 py-8 md:py-12">

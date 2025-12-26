@@ -32,11 +32,11 @@ const translations: Record<Language, Record<string, string>> = {
     "about.feature3": "AI Destekli",
     "about.feature3_desc": "Geleceğin teknolojisi AI Agent'lar ile entegre, akıllı ve otonom özellikler.",
     "tokenomics.title": "Tokenomics Yapısı",
-    "tokenomics.total_supply": "Toplam Arz",
+    
     "tokenomics.tax": "Alış/Satış Vergisi",
-    "tokenomics.lp": "LP Kilitli",
+    
     "tokenomics.benefit1": "Alış/Satış Vergisi Yok 🍣",
-    "tokenomics.benefit2": "LP Kilitli 🔥",
+    
     "tokenomics.benefit3": "Team Token Yok 🤝",
     "tokenomics.benefit4": "Tamamen Topluluk Odaklı 🌍",
     "roadmap.title": "Yol Haritası",
@@ -99,15 +99,15 @@ const translations: Record<Language, Record<string, string>> = {
     "about.feature1": "Lightning Fast",
     "about.feature1_desc": "Transaction confirmation in seconds with Solana's power. No waiting, just speed.",
     "about.feature2": "100% Safe",
-    "about.feature2_desc": "Liquidity burned, mint authority revoked. Community-driven and fully transparent.",
+    "about.feature2_desc": "Mint authority revoked. Community-driven and fully transparent.",
     "about.feature3": "AI-Powered",
     "about.feature3_desc": "Future technology integrated with AI Agents, smart and autonomous features.",
     "tokenomics.title": "Tokenomics Structure",
-    "tokenomics.total_supply": "Total Supply",
+    
     "tokenomics.tax": "Buy/Sell Tax",
-    "tokenomics.lp": "LP Locked",
+    
     "tokenomics.benefit1": "No Buy/Sell Tax 🍣",
-    "tokenomics.benefit2": "LP Locked 🔥",
+    
     "tokenomics.benefit3": "No Team Tokens 🤝",
     "tokenomics.benefit4": "100% Community-Driven 🌍",
     "roadmap.title": "Roadmap",
@@ -170,15 +170,15 @@ const translations: Record<Language, Record<string, string>> = {
     "about.feature1": "Ultra Rápido",
     "about.feature1_desc": "Confirmación de transacciones en segundos con el poder de Solana. Sin esperas, solo velocidad.",
     "about.feature2": "%100 Seguro",
-    "about.feature2_desc": "Liquidez quemada, autoridad de acuñación revocada. Impulsado por la comunidad y totalmente transparente.",
+    "about.feature2_desc": "Autoridad de acuñación revocada. Impulsado por la comunidad y totalmente transparente.",
     "about.feature3": "Impulsado por IA",
     "about.feature3_desc": "Tecnología del futuro integrada con Agentes de IA, características inteligentes y autónomas.",
     "tokenomics.title": "Estructura de Tokenomics",
-    "tokenomics.total_supply": "Suministro Total",
+    
     "tokenomics.tax": "Impuesto Compra/Venta",
-    "tokenomics.lp": "LP Bloqueado",
+    
     "tokenomics.benefit1": "Sin Impuesto Compra/Venta 🍣",
-    "tokenomics.benefit2": "LP Bloqueado 🔥",
+    
     "tokenomics.benefit3": "Sin Tokens de Equipo 🤝",
     "tokenomics.benefit4": "100% Impulsado por Comunidad 🌍",
     "roadmap.title": "Hoja de Ruta",
@@ -241,15 +241,15 @@ const translations: Record<Language, Record<string, string>> = {
     "about.feature1": "Ultra Rapide",
     "about.feature1_desc": "Confirmation des transactions en secondes avec la puissance de Solana. Pas d'attente, juste de la vitesse.",
     "about.feature2": "%100 Sûr",
-    "about.feature2_desc": "Liquidité brûlée, autorité de frappe révoquée. Piloté par la communauté et totalement transparent.",
+    "about.feature2_desc": "Autorité de frappe révoquée. Piloté par la communauté et totalement transparent.",
     "about.feature3": "Alimenté par l'IA",
     "about.feature3_desc": "Technologie future intégrée avec des Agents IA, fonctionnalités intelligentes et autonomes.",
     "tokenomics.title": "Structure de Tokenomics",
-    "tokenomics.total_supply": "Offre Totale",
+    
     "tokenomics.tax": "Taxe Achat/Vente",
-    "tokenomics.lp": "LP Verrouillé",
+    
     "tokenomics.benefit1": "Pas de Taxe Achat/Vente 🍣",
-    "tokenomics.benefit2": "LP Verrouillé 🔥",
+    
     "tokenomics.benefit3": "Pas de Tokens d'Équipe 🤝",
     "tokenomics.benefit4": "%100 Piloté par la Communauté 🌍",
     "roadmap.title": "Feuille de Route",
@@ -312,15 +312,15 @@ const translations: Record<Language, Record<string, string>> = {
     "about.feature1": "Blitzschnell",
     "about.feature1_desc": "Transaktionsbestätigung in Sekunden mit Solanas Kraft. Kein Warten, nur Geschwindigkeit.",
     "about.feature2": "%100 Sicher",
-    "about.feature2_desc": "Liquidität verbrannt, Prägungsautorität widerrufen. Gemeinschaftsgesteuert und vollständig transparent.",
+    "about.feature2_desc": "Prägungsautorität widerrufen. Gemeinschaftsgesteuert und vollständig transparent.",
     "about.feature3": "KI-gesteuert",
     "about.feature3_desc": "Zukunftstechnologie integriert mit KI-Agenten, intelligente und autonome Funktionen.",
     "tokenomics.title": "Tokenomics-Struktur",
-    "tokenomics.total_supply": "Gesamtangebot",
+    
     "tokenomics.tax": "Kauf-/Verkaufssteuer",
-    "tokenomics.lp": "LP Gesperrt",
+    
     "tokenomics.benefit1": "Keine Kauf-/Verkaufssteuer 🍣",
-    "tokenomics.benefit2": "LP Gesperrt 🔥",
+    
     "tokenomics.benefit3": "Keine Team-Tokens 🤝",
     "tokenomics.benefit4": "%100 Gemeinschaftsgesteuert 🌍",
     "roadmap.title": "Roadmap",
@@ -369,7 +369,7 @@ const translations: Record<Language, Record<string, string>> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("tr");
+  const [language, setLanguage] = useState<Language>("en");
 
   const t = (key: string): string => {
     return translations[language][key] || translations.en[key] || key;
