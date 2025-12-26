@@ -4,57 +4,52 @@ import { Copy, ExternalLink, Rocket, Shield, Zap } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Testimonials } from "@/components/Testimonials";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const { t } = useLanguage();
-  const contractAddress = ""; // Boş bırakıldı - kullanıcı ekleyecek
-  const twitterLink = ""; // Boş bırakıldı - kullanıcı ekleyecek
-  const tokenLink = ""; // Boş bırakıldı - kullanıcı ekleyecek
+  const contractAddress = ""; // User will add this
+  const twitterLink = ""; // User will add this
+  const tokenLink = ""; // User will add this
 
   const copyToClipboard = () => {
     if (!contractAddress) {
-      toast.info("Contract Address yakında açıklanacak!");
+      toast.info("Contract Address coming soon!");
       return;
     }
     navigator.clipboard.writeText(contractAddress);
     setCopied(true);
-    toast.success("Contract Address kopyalandı!");
+    toast.success("Contract Address copied!");
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+    <div className="min-h-screen flex flex-col overflow-x-hidden text-white selection:bg-primary selection:text-black">
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 bg-background/50">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 bg-black/40">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-display">
+            <span className="text-2xl font-bold gradient-text font-display">
               TUNAMI
             </span>
             <span className="text-2xl">🍣</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 font-medium">
-            <a href="#about" className="hover:text-primary transition-colors">{t("nav.about")}</a>
-            <a href="#tokenomics" className="hover:text-primary transition-colors">{t("nav.tokenomics")}</a>
-            <a href="#roadmap" className="hover:text-primary transition-colors">{t("nav.roadmap")}</a>
-            <Link href="/staking" className="text-accent hover:text-accent/80 transition-colors flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-8 font-medium text-sm md:text-base">
+            <a href="#about" className="hover:text-primary transition-colors">About</a>
+            <a href="#tokenomics" className="hover:text-primary transition-colors">Tokenomics</a>
+            <a href="#roadmap" className="hover:text-primary transition-colors">Roadmap</a>
+            <Link href="/staking" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              {t("nav.staking")}
+              Staking
             </Link>
           </div>
-          <div className="flex items-center gap-4">
-            <LanguageSwitcher />
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full px-6 shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] transition-all duration-300">
-              {t("nav.buy")}
-            </Button>
-          </div>
+          <Button className="bg-primary hover:bg-primary/90 text-black font-bold rounded-full px-4 md:px-6 text-sm md:text-base neon-glow transition-all duration-300">
+            BUY NOW
+          </Button>
         </div>
       </nav>
 
@@ -65,44 +60,45 @@ export default function Home() {
           <img 
             src="/images/hero-bg.jpg" 
             alt="Cyberpunk Sushi Background" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 text-center lg:text-left">
-            <div className="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-mono mb-4 animate-pulse">
-              {t("hero.solana")} NETWORK
+        <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="space-y-6 md:space-y-8 text-center lg:text-left">
+            <div className="inline-block px-4 py-1 rounded-full border border-primary/50 bg-primary/20 text-primary text-xs md:text-sm font-mono mb-4 animate-pulse mx-auto lg:mx-0">
+              SOLANA NETWORK
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight font-display">
-              {t("hero.title")}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight font-display">
+              The <span className="gradient-text">Cyber-Sushi</span><br />
+              Revolution on <span className="text-primary">Solana</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-              {t("hero.subtitle")}
+            <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto lg:mx-0">
+              TUNAMI combines the fun of meme culture with the speed of Solana. A next-generation AI Agent token. Ready for the wave? 🌊
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="text-lg h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-[0_0_20px_rgba(0,240,255,0.3)]">
-                {t("hero.cta1")}
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
+              <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow">
+                BUY NOW
               </Button>
-              <Button size="lg" variant="outline" className="text-lg h-14 px-8 border-primary/50 text-primary hover:bg-primary/10 rounded-full">
-                <ExternalLink className="mr-2 h-5 w-5" />
-                {t("hero.cta2")}
+              <Button size="lg" variant="outline" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 border-primary/50 text-primary hover:bg-primary/10 rounded-full">
+                <ExternalLink className="mr-2 h-4 w-4 md:h-5 md:w-5" />
+                TELEGRAM
               </Button>
               <Link href="/staking">
-                <Button size="lg" variant="secondary" className="text-lg h-14 px-8 bg-accent/10 text-accent hover:bg-accent/20 border border-accent/20 rounded-full">
-                  {t("hero.cta3")}
+                <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary/20 text-primary hover:bg-primary/30 border border-primary/30 rounded-full">
+                  STAKE & EARN 💸
                 </Button>
               </Link>
             </div>
 
             {/* Contract Address Box */}
-            <div className="mt-8 p-4 rounded-xl bg-card/50 border border-white/10 backdrop-blur-sm max-w-md mx-auto lg:mx-0">
-              <p className="text-xs text-muted-foreground mb-2 font-mono">{t("hero.ca")}</p>
-              <div className="flex items-center justify-between gap-2 bg-black/30 p-3 rounded-lg border border-white/5">
-                <code className="text-sm md:text-base font-mono text-primary truncate">
-                  {contractAddress || t("hero.ca_placeholder")}
+            <div className="mt-6 md:mt-8 p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm max-w-md mx-auto lg:mx-0">
+              <p className="text-xs text-white/60 mb-2 font-mono">CONTRACT ADDRESS (CA)</p>
+              <div className="flex items-center justify-between gap-2 bg-black/40 p-3 rounded-lg border border-white/10">
+                <code className="text-xs md:text-sm font-mono text-primary truncate">
+                  {contractAddress || "Coming soon..."}
                 </code>
                 <Button 
                   size="icon" 
@@ -117,52 +113,52 @@ export default function Home() {
           </div>
 
           {/* Mascot Image */}
-          <div className="relative h-96 lg:h-full flex items-center justify-center">
+          <div className="relative h-64 md:h-96 lg:h-full flex items-center justify-center order-first lg:order-last">
             <img 
               src="/images/mascot.png" 
               alt="TUNAMI Mascot" 
-              className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,240,255,0.3)]"
+              className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,255,136,0.3)]"
             />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative py-20 bg-card/20 border-t border-white/10">
+      <section id="about" className="relative py-16 md:py-20 bg-black/40 border-t border-white/10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">{t("about.title")}</h2>
-            <p className="text-xl text-muted-foreground">{t("about.subtitle")}</p>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 gradient-text">Why TUNAMI?</h2>
+            <p className="text-lg md:text-xl text-white/80">Not just a meme token, but a technological revolution.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-card/50 border-white/10 backdrop-blur-sm hover:border-primary/30 transition-colors">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,136,0.2)]">
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4">
                   <Zap className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 font-display">{t("about.feature1")}</h3>
-                <p className="text-muted-foreground">{t("about.feature1_desc")}</p>
+                <h3 className="text-xl font-bold mb-2 font-display">Lightning Fast</h3>
+                <p className="text-white/80">Transaction confirmation in seconds with Solana's power. No waiting, just speed.</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-card/50 border-white/10 backdrop-blur-sm hover:border-primary/30 transition-colors">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4">
+            <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,136,0.2)]">
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 font-display">{t("about.feature2")}</h3>
-                <p className="text-muted-foreground">{t("about.feature2_desc")}</p>
+                <h3 className="text-xl font-bold mb-2 font-display">100% Safe</h3>
+                <p className="text-white/80">Liquidity burned, mint authority revoked. Community-driven and fully transparent.</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-card/50 border-white/10 backdrop-blur-sm hover:border-primary/30 transition-colors">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-chart-3/10 text-chart-3 flex items-center justify-center mb-4">
+            <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,136,0.2)]">
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4">
                   <Rocket className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 font-display">{t("about.feature3")}</h3>
-                <p className="text-muted-foreground">{t("about.feature3_desc")}</p>
+                <h3 className="text-xl font-bold mb-2 font-display">AI-Powered</h3>
+                <p className="text-white/80">Future technology integrated with AI Agents, smart and autonomous features.</p>
               </CardContent>
             </Card>
           </div>
@@ -170,40 +166,40 @@ export default function Home() {
       </section>
 
       {/* Tokenomics Section */}
-      <section id="tokenomics" className="relative py-20">
+      <section id="tokenomics" className="relative py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">{t("tokenomics.title")}</h2>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 gradient-text">Tokenomics</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="p-6 rounded-xl bg-card/50 border border-white/10 backdrop-blur-sm">
-                <p className="text-muted-foreground text-sm mb-2">{t("tokenomics.total_supply")}</p>
-                <p className="text-3xl font-bold text-primary font-mono">Yakında Açıklanacak</p>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-4 md:space-y-6">
+              <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                <p className="text-white/60 text-sm mb-2">Total Supply</p>
+                <p className="text-2xl md:text-3xl font-bold text-primary font-mono">Coming Soon</p>
               </div>
-              <div className="p-6 rounded-xl bg-card/50 border border-white/10 backdrop-blur-sm">
-                <p className="text-muted-foreground text-sm mb-2">{t("tokenomics.tax")}</p>
-                <p className="text-3xl font-bold text-accent font-mono">0%</p>
+              <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                <p className="text-white/60 text-sm mb-2">Buy/Sell Tax</p>
+                <p className="text-2xl md:text-3xl font-bold text-primary font-mono">0%</p>
               </div>
-              <div className="p-6 rounded-xl bg-card/50 border border-white/10 backdrop-blur-sm">
-                <p className="text-muted-foreground text-sm mb-2">{t("tokenomics.lp")}</p>
-                <p className="text-3xl font-bold text-chart-3 font-mono">✅ Evet</p>
+              <div className="p-4 md:p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                <p className="text-white/60 text-sm mb-2">LP Locked</p>
+                <p className="text-2xl md:text-3xl font-bold text-primary font-mono">✅ Yes</p>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
-                <p className="text-primary font-bold">{t("tokenomics.benefit1")}</p>
+            <div className="space-y-3 md:space-y-4">
+              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
+                <p className="text-primary font-bold">No Buy/Sell Tax 🍣</p>
               </div>
-              <div className="p-4 rounded-lg bg-accent/10 border border-accent/20">
-                <p className="text-accent font-bold">{t("tokenomics.benefit2")}</p>
+              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
+                <p className="text-primary font-bold">LP Locked 🔥</p>
               </div>
-              <div className="p-4 rounded-lg bg-chart-3/10 border border-chart-3/20">
-                <p className="text-chart-3 font-bold">{t("tokenomics.benefit3")}</p>
+              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
+                <p className="text-primary font-bold">No Team Tokens 🤝</p>
               </div>
-              <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/20">
-                <p className="text-purple-400 font-bold">{t("tokenomics.benefit4")}</p>
+              <div className="p-4 rounded-lg bg-primary/20 border border-primary/30">
+                <p className="text-primary font-bold">100% Community-Driven 🌍</p>
               </div>
             </div>
           </div>
@@ -211,93 +207,93 @@ export default function Home() {
       </section>
 
       {/* Roadmap Section */}
-      <section id="roadmap" className="relative py-20 bg-card/20 border-t border-white/10">
+      <section id="roadmap" className="relative py-16 md:py-20 bg-black/40 border-t border-white/10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">{t("roadmap.title")}</h2>
-            <p className="text-xl text-muted-foreground">{t("roadmap.subtitle")}</p>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 gradient-text">Roadmap</h2>
+            <p className="text-lg md:text-xl text-white/80">Moving forward with confidence.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {/* Phase 1 */}
-            <Card className="bg-card/50 border-white/10 backdrop-blur-sm">
-              <CardContent className="p-8">
+            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+              <CardContent className="p-6 md:p-8">
                 <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-4 font-bold">
                   1
                 </div>
-                <h3 className="text-2xl font-bold mb-4 font-display">{t("roadmap.phase1_title")}</h3>
-                <ul className="space-y-2 text-muted-foreground">
+                <h3 className="text-2xl font-bold mb-4 font-display">Launch</h3>
+                <ul className="space-y-2 text-white/80 text-sm">
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary"></span>
-                    {t("roadmap.phase1_item1")}
+                    Website Launch
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary"></span>
-                    {t("roadmap.phase1_item2")}
+                    Community Setup
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary"></span>
-                    {t("roadmap.phase1_item3")}
+                    Marketing Start
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary"></span>
-                    {t("roadmap.phase1_item4")}
+                    Fair Launch
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
             {/* Phase 2 */}
-            <Card className="bg-card/50 border-white/10 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-full bg-accent/20 text-accent flex items-center justify-center mb-4 font-bold">
+            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-4 font-bold">
                   2
                 </div>
-                <h3 className="text-2xl font-bold mb-4 font-display">{t("roadmap.phase2_title")}</h3>
-                <ul className="space-y-2 text-muted-foreground">
+                <h3 className="text-2xl font-bold mb-4 font-display">Growth</h3>
+                <ul className="space-y-2 text-white/80 text-sm">
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent"></span>
-                    {t("roadmap.phase2_item1")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    CoinGecko Listing
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent"></span>
-                    {t("roadmap.phase2_item2")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    CoinMarketCap Listing
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent"></span>
-                    {t("roadmap.phase2_item3")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    10,000 Holders Goal
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent"></span>
-                    {t("roadmap.phase2_item4")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    CEX Discussions
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
             {/* Phase 3 */}
-            <Card className="bg-card/50 border-white/10 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-full bg-chart-3/20 text-chart-3 flex items-center justify-center mb-4 font-bold">
+            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+              <CardContent className="p-6 md:p-8">
+                <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-4 font-bold">
                   3
                 </div>
-                <h3 className="text-2xl font-bold mb-4 font-display">{t("roadmap.phase3_title")}</h3>
-                <ul className="space-y-2 text-muted-foreground">
+                <h3 className="text-2xl font-bold mb-4 font-display">Dominance</h3>
+                <ul className="space-y-2 text-white/80 text-sm">
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-chart-3"></span>
-                    {t("roadmap.phase3_item1")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    Tier 1 CEX Listing
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-chart-3"></span>
-                    {t("roadmap.phase3_item2")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    TUNAMI NFT Collection
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-chart-3"></span>
-                    {t("roadmap.phase3_item3")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    AI Agent Integration
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-chart-3"></span>
-                    {t("roadmap.phase3_item4")}
+                    <span className="w-2 h-2 rounded-full bg-primary"></span>
+                    Global Marketing
                   </li>
                 </ul>
               </CardContent>
@@ -306,11 +302,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* Footer */}
-      <footer className="border-t border-white/10 bg-card/20 py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>{t("footer.disclaimer")}</p>
-          <p className="mt-4">© 2025 TUNAMI. All rights reserved. 🍣</p>
+      <footer className="border-t border-white/10 bg-black/60 py-8 md:py-12">
+        <div className="container mx-auto px-4 text-center text-sm md:text-base text-white/60">
+          <p className="mb-4">Disclaimer: Crypto investments carry high risk. Please do your own research (DYOR). This site is not investment advice.</p>
+          <p>© 2025 TUNAMI. All rights reserved. 🍣</p>
         </div>
       </footer>
     </div>
