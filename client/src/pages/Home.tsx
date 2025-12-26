@@ -307,9 +307,8 @@ export default function Home() {
       <footer className="border-t border-white/10 bg-black/60 py-8 md:py-12">
         <div className="container mx-auto px-4 text-center text-sm md:text-base text-white/60">
           <p className="mb-4 text-xs text-red-400/80">
-            Yasal Uyarı: Bu tamamen eğlence amaçlı, spekülatif bir varlıktır ve finansal bir değeri yoktur. Kendi araştırmanızı yapın (DYOR).
+            Yasal Uyarı: Bu tamamen eğlence amaçlı, spekülatif bir varlıktır ve finansal bir değeri yoktur. Kendi araştırmanızı yapın (DYOR). Crypto yatırımları yüksek risk taşır. Bu site yatırım tavsiyesi değildir.
           </p>
-          <p className="mb-4">Disclaimer: Crypto investments carry high risk. Please do your own research (DYOR). This site is not investment advice.</p>
           <p>© 2025 TUNAMI. All rights reserved. 🍣</p>
         </div>
       </footer>

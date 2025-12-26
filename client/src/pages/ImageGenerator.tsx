@@ -85,9 +85,12 @@ export default function ImageGenerator() {
 
         // 2. Tuna görselini yerleştir
         const logo = tunaImage;
-        const logoSize = Math.min(width, height) * 0.4; // Görselin %40'u kadar
-        const logoX = width - logoSize - 20; // Sağ alt köşe
-        const logoY = height - logoSize - 20; // Sağ alt köşe (Hata düzeltildi: logoY yerine logoSize kullanılmalıydı)
+        // Mobil uyumluluk için logo boyutunu ve kenar boşluğunu dinamik yap
+        const isMobile = width < 600;
+        const logoSize = Math.min(width, height) * (isMobile ? 0.25 : 0.4); // Mobil için %25, masaüstü için %40
+        const padding = isMobile ? 10 : 20;
+        const logoX = width - logoSize - padding; // Sağ alt köşe
+        const logoY = height - logoSize - padding; // Sağ alt köşe
 
         ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
 
@@ -152,8 +155,8 @@ export default function ImageGenerator() {
         <Card className="bg-white/10 border-white/20 backdrop-blur-sm p-6 md:p-10 max-w-3xl mx-auto">
           <CardContent className="p-0 space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <label htmlFor="image-upload" className="cursor-pointer">
-                <Button asChild className="bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow transition-all duration-300">
+              <label htmlFor="image-upload" className="cursor-pointer w-full sm:w-auto">
+                <Button asChild className="w-full bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow transition-all duration-300">
                   <div className="flex items-center">
                     <Upload className="mr-2 h-5 w-5" />
                     {imageFile ? "Görseli Değiştir" : "Görsel Yükle"}
@@ -171,7 +174,7 @@ export default function ImageGenerator() {
               <Button 
                 onClick={handleDownload} 
                 disabled={!generatedImage}
-                className="bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-all duration-300"
+                className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-all duration-300"
               >
                 <Download className="mr-2 h-5 w-5" />
                 İndir
@@ -180,7 +183,7 @@ export default function ImageGenerator() {
               <Button 
                 onClick={handleReset} 
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 font-bold rounded-full transition-all duration-300"
+                className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 font-bold rounded-full transition-all duration-300"
               >
                 <RotateCcw className="mr-2 h-5 w-5" />
                 Sıfırla
