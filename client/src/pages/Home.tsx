@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Copy, ExternalLink, Rocket, Shield, Zap } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 import { toast } from "sonner";
 
 export default function Home() {
@@ -31,6 +32,13 @@ export default function Home() {
             <a href="#about" className="hover:text-primary transition-colors">Hakkında</a>
             <a href="#tokenomics" className="hover:text-primary transition-colors">Tokenomics</a>
             <a href="#roadmap" className="hover:text-primary transition-colors">Roadmap</a>
+            <Link href="/staking" className="text-accent hover:text-accent/80 transition-colors flex items-center gap-1">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+              Staking
+            </Link>
           </div>
           <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full px-6 shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] transition-all duration-300">
             BUY $TUNAMI
@@ -71,6 +79,11 @@ export default function Home() {
                 <ExternalLink className="mr-2 h-5 w-5" />
                 TELEGRAM
               </Button>
+              <Link href="/staking">
+                <Button size="lg" variant="secondary" className="text-lg h-14 px-8 bg-accent/10 text-accent hover:bg-accent/20 border border-accent/20 rounded-full">
+                  STAKE & EARN 💸
+                </Button>
+              </Link>
             </div>
 
             {/* Contract Address Box */}
