@@ -94,8 +94,9 @@ export default function Home() {
               <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow">
                 BUY NOW
               </Button>
-              <a href={twitterLink} target="_blank" rel="noopener noreferrer" className="block w-16 h-16 md:w-20 md:h-20 transition-transform duration-300 hover:scale-105">
+              <a href={twitterLink} target="_blank" rel="noopener noreferrer" className="relative block w-12 h-12 md:w-16 md:h-16 transition-transform duration-300 hover:scale-105">
                 <img src="/tunami_ship_logo.png" alt="Twitter Link" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(0,255,136,0.5)]" />
+                <ExternalLink className="absolute bottom-0 right-0 h-4 w-4 md:h-5 md:w-5 text-primary bg-black rounded-full p-0.5 border border-primary/50" />
               </a>
             </div>
 
@@ -305,6 +306,9 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-white/10 bg-black/60 py-8 md:py-12">
         <div className="container mx-auto px-4 text-center text-sm md:text-base text-white/60">
+          <p className="mb-4 text-xs text-red-400/80">
+            Yasal Uyarı: Bu web sayfası ve memecoin'in OpenAI veya Disney ile hiçbir bağlantısı yoktur. Bu tamamen eğlence amaçlı, spekülatif bir varlıktır ve finansal bir değeri yoktur. Kullanılan tüm varlıklar, toplulukların yapay zeka ile bilinen temaların kendi topluluk yapımı versiyonlarını oluşturmalarına yardımcı olmak amacıyla eğlence için oluşturulmuştur.
+          </p>
           <p className="mb-4">Disclaimer: Crypto investments carry high risk. Please do your own research (DYOR). This site is not investment advice.</p>
           <p>© 2025 TUNAMI. All rights reserved. 🍣</p>
         </div>

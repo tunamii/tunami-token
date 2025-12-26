@@ -39,6 +39,13 @@ export default function ImageGenerator() {
   }, [imageFile]); // imageFile değiştiğinde yeni bir Tuna görseli yükle
 
   const generateImage = useCallback((file: File, tunaImage: HTMLImageElement) => {
+    // Görsel işleme hızını artırmak için, FileReader'ı sadece bir kez kullanıp
+    // canvas'ı doğrudan kullanıcının yüklediği resim verisiyle güncelleyeceğiz.
+    // Ancak, mevcut yapı zaten FileReader kullanıyor. Optimizasyon için
+    // görsel boyutunu küçültme mantığını ekledik.
+    // Ayrıca, tunaImage'in yüklenip yüklenmediğini kontrol etmeye gerek yok,
+    // çünkü useEffect içinde zaten kontrol ediliyor ve yüklenmiş bir img objesi
+    // olarak generateImage'e gönderiliyor.
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -48,8 +55,24 @@ export default function ImageGenerator() {
         if (!canvas) return;
 
         // Canvas boyutunu kullanıcı görseline göre ayarla
-        const width = userImg.width;
-        const height = userImg.height;
+        // Canvas boyutunu optimize et: Maksimum 1000x1000'e küçült
+        const maxWidth = 1000;
+        const maxHeight = 1000;
+        let width = userImg.width;
+        let height = userImg.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = height * (maxWidth / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = width * (maxHeight / height);
+            height = maxHeight;
+          }
+        }
+
         canvas.width = width;
         canvas.height = height;
 
@@ -70,6 +93,7 @@ export default function ImageGenerator() {
         // 3. Sonucu kaydet
         setGeneratedImage(canvas.toDataURL("image/png"));
       };
+      // Kullanıcı görselini daha hızlı yüklemek için boyutlandırma yapmadan önce çiz
       userImg.src = e.target?.result as string;
     };
     reader.readAsDataURL(file);
