@@ -6,7 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
-import Staking from "./pages/Staking";
+
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
 // Note: LanguageSwitcher will be added to Home.tsx navbar
@@ -16,7 +16,7 @@ function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/staking"} component={Staking} />
+
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

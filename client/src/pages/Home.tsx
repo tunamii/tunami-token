@@ -11,7 +11,7 @@ export default function Home() {
   const [randomTuna, setRandomTuna] = useState("/images/tuna-1.png");
   
   const contractAddress = ""; // User will add this
-  const twitterLink = ""; // User will add this
+  const twitterLink = "https://twitter.com/tunamiisolana"; // User will add this
   const tokenLink = ""; // User will add this
 
   // Set random TUNA image on page load
@@ -57,13 +57,6 @@ export default function Home() {
             <a href="#about" className="hover:text-primary transition-colors">About</a>
             <a href="#tokenomics" className="hover:text-primary transition-colors">Tokenomics</a>
             <a href="#roadmap" className="hover:text-primary transition-colors">Roadmap</a>
-            <Link href="/staking" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Staking
-            </Link>
           </div>
           <Button className="bg-primary hover:bg-primary/90 text-black font-bold rounded-full px-4 md:px-6 text-sm md:text-base neon-glow transition-all duration-300">
             BUY NOW
@@ -100,15 +93,10 @@ export default function Home() {
               <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow">
                 BUY NOW
               </Button>
-              <Button size="lg" variant="outline" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 border-primary/50 text-primary hover:bg-primary/10 rounded-full">
+              <Button size="lg" variant="outline" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 border-primary/50 text-primary hover:bg-primary/10 rounded-full" onClick={() => window.open(twitterLink, '_blank')}>
                 <ExternalLink className="mr-2 h-4 w-4 md:h-5 md:w-5" />
-                TELEGRAM
+                TWITTER
               </Button>
-              <Link href="/staking">
-                <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary/20 text-primary hover:bg-primary/30 border border-primary/30 rounded-full">
-                  STAKE & EARN 💸
-                </Button>
-              </Link>
             </div>
 
             {/* Contract Address Box */}
