@@ -20,6 +20,7 @@ export default function ImageGenerator() {
   };
 
   // Rastgele Tuna görselini yükle
+  // Rastgele Tuna görselini yükle
   useEffect(() => {
     const randomImageSrc = getRandomTunaImage();
     setRandomTunaImage(randomImageSrc);
@@ -36,7 +37,7 @@ export default function ImageGenerator() {
     img.onerror = () => {
       toast.error("Tuna görseli yüklenemedi.");
     };
-  }, [imageFile]); // imageFile değiştiğinde yeni bir Tuna görseli yükle
+  }, []); // Sadece ilk yüklemede bir Tuna görseli yükle. Yeni resim yüklenince değil.
 
   const generateImage = useCallback((file: File, tunaImage: HTMLImageElement) => {
     // Görsel işleme hızını artırmak için, FileReader'ı sadece bir kez kullanıp
@@ -86,7 +87,7 @@ export default function ImageGenerator() {
         const logo = tunaImage;
         const logoSize = Math.min(width, height) * 0.4; // Görselin %40'u kadar
         const logoX = width - logoSize - 20; // Sağ alt köşe
-        const logoY = height - logoY - 20; // Sağ alt köşe
+        const logoY = height - logoSize - 20; // Sağ alt köşe (Hata düzeltildi: logoY yerine logoSize kullanılmalıydı)
 
         ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
 
@@ -105,6 +106,9 @@ export default function ImageGenerator() {
       setImageFile(file);
       if (logoImageRef.current) {
         generateImage(file, logoImageRef.current);
+      } else {
+        // Eğer logo hala yüklenmediyse, kullanıcıya bilgi ver.
+        toast.info("Tuna görseli hala yükleniyor, lütfen tekrar deneyin.");
       }
     } else {
       toast.error("Lütfen geçerli bir resim dosyası yükleyin.");
