@@ -57,6 +57,7 @@ export default function Home() {
             <a href="#about" className="hover:text-primary transition-colors">About</a>
             <a href="#tokenomics" className="hover:text-primary transition-colors">Tokenomics</a>
             <a href="#roadmap" className="hover:text-primary transition-colors">Roadmap</a>
+            <a href="/generator" className="hover:text-primary transition-colors">Generator</a>
           </div>
           <Button className="bg-primary hover:bg-primary/90 text-black font-bold rounded-full px-4 md:px-6 text-sm md:text-base neon-glow transition-all duration-300">
             BUY NOW
