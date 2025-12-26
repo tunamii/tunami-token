@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import ImageGenerator from "./pages/ImageGenerator";
+import TunaVerse from "./pages/TunaVerse";
 
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
@@ -18,6 +19,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/generator"} component={ImageGenerator} />
+      <Route path={"/tuna-verse"} component={TunaVerse} />
 
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
