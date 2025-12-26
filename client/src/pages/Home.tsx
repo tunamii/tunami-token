@@ -94,10 +94,9 @@ export default function Home() {
               <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow">
                 BUY NOW
               </Button>
-              <Button size="lg" variant="outline" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 border-primary/50 text-primary hover:bg-primary/10 rounded-full" onClick={() => window.open(twitterLink, '_blank')}>
-                <ExternalLink className="mr-2 h-4 w-4 md:h-5 md:w-5" />
-                TWITTER
-              </Button>
+              <a href={twitterLink} target="_blank" rel="noopener noreferrer" className="block w-16 h-16 md:w-20 md:h-20 transition-transform duration-300 hover:scale-105">
+                <img src="/tunami_ship_logo.png" alt="Twitter Link" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(0,255,136,0.5)]" />
+              </a>
             </div>
 
             {/* Contract Address Box */}

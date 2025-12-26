@@ -10,28 +10,35 @@ export default function ImageGenerator() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const logoImageRef = useRef<HTMLImageElement | null>(null);
+  const [randomTunaImage, setRandomTunaImage] = useState<string | null>(null);
 
-  // Tunami logosunu yükle
+  const tunaImages = Array.from({ length: 50 }, (_, i) => `/images/tuna_gen_${(i + 1).toString().padStart(2, '0')}.png`);
+
+  const getRandomTunaImage = () => {
+    const randomIndex = Math.floor(Math.random() * tunaImages.length);
+    return tunaImages[randomIndex];
+  };
+
+  // Rastgele Tuna görselini yükle
   useEffect(() => {
+    const randomImageSrc = getRandomTunaImage();
+    setRandomTunaImage(randomImageSrc);
+    
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = "/tunami_ship_logo.png"; // Public dizine taşıdığımız logo
+    img.src = randomImageSrc;
     img.onload = () => {
       logoImageRef.current = img;
       if (imageFile) {
-        generateImage(imageFile); // Logo yüklendikten sonra görseli tekrar oluştur
+        generateImage(imageFile, img); // Görsel yüklendikten sonra resmi oluştur
       }
     };
     img.onerror = () => {
-      toast.error("Tunami logosu yüklenemedi.");
+      toast.error("Tuna görseli yüklenemedi.");
     };
-  }, []);
+  }, [imageFile]); // imageFile değiştiğinde yeni bir Tuna görseli yükle
 
-  const generateImage = useCallback((file: File) => {
-    if (!logoImageRef.current) {
-      toast.info("Logo yükleniyor, lütfen bekleyin...");
-      return;
-    }
+  const generateImage = useCallback((file: File, tunaImage: HTMLImageElement) => {
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -52,11 +59,11 @@ export default function ImageGenerator() {
         // 1. Kullanıcı görselini çiz
         ctx.drawImage(userImg, 0, 0, width, height);
 
-        // 2. Tunami logosunu yerleştir
-        const logo = logoImageRef.current!;
-        const logoSize = Math.min(width, height) * 0.3; // Görselin %30'u kadar
+        // 2. Tuna görselini yerleştir
+        const logo = tunaImage;
+        const logoSize = Math.min(width, height) * 0.4; // Görselin %40'u kadar
         const logoX = width - logoSize - 20; // Sağ alt köşe
-        const logoY = height - logoSize - 20;
+        const logoY = height - logoY - 20; // Sağ alt köşe
 
         ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
 
@@ -72,7 +79,9 @@ export default function ImageGenerator() {
     const file = event.target.files?.[0];
     if (file && file.type.startsWith("image/")) {
       setImageFile(file);
-      generateImage(file);
+      if (logoImageRef.current) {
+        generateImage(file, logoImageRef.current);
+      }
     } else {
       toast.error("Lütfen geçerli bir resim dosyası yükleyin.");
       setImageFile(null);
@@ -109,7 +118,7 @@ export default function ImageGenerator() {
           Tunami Görsel Oluşturucu 🌊
         </h1>
         <p className="text-lg text-white/80 text-center mb-10">
-          Kendi fotoğrafınızı yükleyin ve Tunami logosu ile kişiselleştirin!
+          Kendi fotoğrafınızı yükleyin ve üzerine rastgele bir Tuna/Sushi görseli ekleyin!
         </p>
 
         <Card className="bg-white/10 border-white/20 backdrop-blur-sm p-6 md:p-10 max-w-3xl mx-auto">
