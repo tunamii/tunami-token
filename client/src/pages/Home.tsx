@@ -115,7 +115,7 @@ export default function Home() {
             <img 
               src={randomTuna}
               alt="TUNAMI Mascot" 
-              className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(0,255,136,0.3)] animate-in fade-in duration-500"
+              className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300 drop-shadow-[0_0_20px_rgba(0,255,136,0.15)] blur-[0.5px]"
             />
           </div>
         </div>
