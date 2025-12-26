@@ -1,18 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Copy, ExternalLink, Rocket, Shield, Zap } from "lucide-react";
+import { ExternalLink, Rocket, Shield, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { toast } from "sonner";
 
 
 export default function Home() {
-  const [copied, setCopied] = useState(false);
   const [randomTuna, setRandomTuna] = useState("/images/tuna-1.png");
   
-  const contractAddress = ""; // User will add this
   const twitterLink = "https://twitter.com/tunamiisolana"; // User will add this
-  const tokenLink = ""; // User will add this
 
   // Set random TUNA image on page load
   useEffect(() => {
@@ -21,16 +18,7 @@ export default function Home() {
     setRandomTuna(tunaImages[randomIndex]);
   }, []);
 
-  const copyToClipboard = () => {
-    if (!contractAddress) {
-      toast.info("Contract Address coming soon!");
-      return;
-    }
-    navigator.clipboard.writeText(contractAddress);
-    setCopied(true);
-    toast.success("Contract Address copied!");
-    setTimeout(() => setCopied(false), 2000);
-  };
+
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden text-white selection:bg-primary selection:text-black">
@@ -50,9 +38,7 @@ export default function Home() {
             <a href="#roadmap" className="hover:text-primary transition-colors">Roadmap</a>
             <a href="/generator" className="hover:text-primary transition-colors">Generator</a>
           </div>
-          <Button className="bg-primary hover:bg-primary/90 text-black font-bold rounded-full px-4 md:px-6 text-sm md:text-base neon-glow transition-all duration-300">
-            BUY NOW
-          </Button>
+
         </div>
       </nav>
 
@@ -82,31 +68,10 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 bg-primary hover:bg-primary/90 text-black font-bold rounded-full neon-glow">
-                BUY NOW
-              </Button>
               <Button size="lg" variant="outline" className="text-base md:text-lg h-12 md:h-14 px-6 md:px-8 border-primary/50 text-primary hover:bg-primary/10 rounded-full" onClick={() => window.open(twitterLink, '_blank')}>
                 <ExternalLink className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                 TWITTER
               </Button>
-            </div>
-
-            {/* Contract Address Box */}
-            <div className="mt-6 md:mt-8 p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm max-w-md mx-auto lg:mx-0">
-              <p className="text-xs text-white/60 mb-2 font-mono">CONTRACT ADDRESS (CA)</p>
-              <div className="flex items-center justify-between gap-2 bg-black/40 p-3 rounded-lg border border-white/10">
-                <code className="text-xs md:text-sm font-mono text-primary truncate">
-                  {contractAddress || "Coming soon..."}
-                </code>
-                <Button 
-                  size="icon" 
-                  variant="ghost" 
-                  className="h-8 w-8 hover:text-primary hover:bg-primary/10"
-                  onClick={copyToClipboard}
-                >
-                  <Copy className="h-4 w-4" />
-                </Button>
-              </div>
             </div>
           </div>
 
